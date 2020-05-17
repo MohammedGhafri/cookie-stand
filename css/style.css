@@ -1,0 +1,20 @@
+h2{text-align: center;
+    font-size: 40px;
+}
+li{
+    font-size: 24px;
+    
+    text-align: center;
+}
+h2{
+/* float: left;
+margin-right: 15%; */
+}
+article ul{
+    
+    background-color: yellow;
+    width: 20%;
+    border: 3px dashed blue;
+    margin-left: 40%;
+    display: inline-block;
+}
