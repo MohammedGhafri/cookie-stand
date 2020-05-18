@@ -15,8 +15,8 @@ var seattle ={
     rarray: [],
     
     randomCust: function(){
-        
-        this.rcust=randomCustomers(Math.floor(Math.random() * Math.floor(100)));
+        // Math.floor(Math.random() * (max - min + 1) ) + min;
+        this.rcust=randomCustomers(Math.floor(Math.random() * (this.maxCust - this.minCust + 1) ) + this.minCust);
         // console.log(seattle.rcust);
         this.rarray=calculation(seattle.rcust);
     }
@@ -26,17 +26,28 @@ var seattle ={
 
 seattle.randomCust();
 
+// var container = document.getElementById('divone');
+// var article1=document.createElement('article');
+// container.appendChild(article1);
+// var header2 = document.createElement('h2');
+// header2.textContent=dubai.name;
+// article1.appendChild(header2);
+// var unlisted = document.createElement('ul');
+// article1.appendChild(unlisted);
+// createUnlested3();
 
 
 
 
 
-var container = document.getElementById('seattle');
+var container = document.getElementById('divone');
+var article1=document.createElement('article');
+container.appendChild(article1);
 var header2 = document.createElement('h2');
 header2.textContent=seattle.name;
-container.appendChild(header2);
+article1.appendChild(header2);
 var unlisted = document.createElement('ul');
-container.appendChild(unlisted);
+article1.appendChild(unlisted);
 createUnlested1();
 
 var tokyo ={
@@ -49,19 +60,21 @@ var tokyo ={
 
     randomCust: function(){
         
-        this.rcust=randomCustomers(Math.floor(Math.random() * Math.floor(100)));
+        this.rcust=randomCustomers((Math.random() * (this.maxCust - this.minCust + 1) ) + this.minCust);
         // console.log(seattle.rcust);
         this.rarray=calculation(tokyo.rcust);
     }
 }
 tokyo.randomCust();
 
-var container = document.getElementById('seattle');
+var container = document.getElementById('divone');
+var article1=document.createElement('article');
+container.appendChild(article1);
 var header2 = document.createElement('h2');
 header2.textContent=tokyo.name;
-container.appendChild(header2);
+article1.appendChild(header2);
 var unlisted = document.createElement('ul');
-container.appendChild(unlisted);
+article1.appendChild(unlisted);
 createUnlested2();
 
 
@@ -75,19 +88,22 @@ var dubai ={
     avgCookieSale:3.7 ,
     randomCust: function(){
         
-        this.rcust=randomCustomers(Math.floor(Math.random() * Math.floor(100)));
+        this.rcust=randomCustomers((Math.random() * (this.maxCust - this.minCust + 1) ) + this.minCust);
         // console.log(seattle.rcust);
         this.rarray=calculation(dubai.rcust);
     }
 }
 dubai.randomCust();
-var container = document.getElementById('seattle');
+var container = document.getElementById('divone');
+var article1=document.createElement('article');
+container.appendChild(article1);
 var header2 = document.createElement('h2');
 header2.textContent=dubai.name;
-container.appendChild(header2);
+article1.appendChild(header2);
 var unlisted = document.createElement('ul');
-container.appendChild(unlisted);
+article1.appendChild(unlisted);
 createUnlested3();
+var tot= document.createElement('p'); // this is for total
 
 var paris= {
     name:'paris',
@@ -99,18 +115,20 @@ var paris= {
     
     randomCust: function(){
         
-        this.rcust=randomCustomers(Math.floor(Math.random() * Math.floor(100)));
+        this.rcust=randomCustomers((Math.random() * (this.maxCust - this.minCust + 1) ) + this.minCust);
         // console.log(seattle.rcust);
         this.rarray=calculation(seattle.rcust);
     }
 }
 paris.randomCust();
-var container = document.getElementById('seattle');
+var container = document.getElementById('divone');
+var article1=document.createElement('article');
+container.appendChild(article1);
 var header2 = document.createElement('h2');
 header2.textContent=paris.name;
-container.appendChild(header2);
+article1.appendChild(header2);
 var unlisted = document.createElement('ul');
-container.appendChild(unlisted);
+article1.appendChild(unlisted);
 createUnlested4();
 
 
@@ -124,18 +142,20 @@ var lima ={
     
     randomCust: function(){
         
-        this.rcust=randomCustomers(Math.floor(Math.random() * Math.floor(100)));
+        this.rcust=randomCustomers((Math.random() * (this.maxCust - this.minCust + 1) ) + this.minCust);
         // console.log(seattle.rcust);
         this.rarray=calculation(lima.rcust);
     }
 }
 lima.randomCust();
-var container = document.getElementById('seattle');
+var container = document.getElementById('divone');
+var article1=document.createElement('article');
+container.appendChild(article1);
 var header2 = document.createElement('h2');
 header2.textContent=lima.name;
-container.appendChild(header2);
+article1.appendChild(header2);
 var unlisted = document.createElement('ul');
-container.appendChild(unlisted);
+article1.appendChild(unlisted);
 createUnlested5();
 
 // Seattle	23	65	6.3
@@ -175,6 +195,11 @@ var list1=document.createElement('li');
 unlisted.appendChild(list1);
 list1.textContent=`${ hourArray[i]} : ${seattle.rarray[i]} cookies`;
     }
+    var total= document.createElement('p'); // this is for total
+    article1.appendChild(total);
+    var tot=0;
+    for(var i =0;i<hourArray.length;i++){tot+=seattle.rarray[i]}
+    total.textContent=` The total slaes in this city is :${tot}`;
 }
 
 
@@ -186,6 +211,11 @@ var list1=document.createElement('li');
 unlisted.appendChild(list1);
 list1.textContent=`${ hourArray[i]} : ${tokyo.rarray[i]} cookies`;
     }
+    var total= document.createElement('p'); // this is for total
+    article1.appendChild(total);
+    var tot=0;
+    for(var i =0;i<hourArray.length;i++){tot+=tokyo.rarray[i]}
+    total.textContent=` The total slaes in this city is :${tot}`;
 }
 
 function createUnlested3 (){
@@ -195,6 +225,11 @@ var list1=document.createElement('li');
 unlisted.appendChild(list1);
 list1.textContent=`${ hourArray[i]} : ${dubai.rarray[i]} cookies`;
     }
+    var total= document.createElement('p'); // this is for total
+    article1.appendChild(total);
+    var tot=0;
+    for(var i =0;i<hourArray.length;i++){tot+=dubai.rarray[i]}
+    total.textContent=` The total slaes in this city is :${tot}`;
 }
 
 function createUnlested4 (){
@@ -204,6 +239,11 @@ var list1=document.createElement('li');
 unlisted.appendChild(list1);
 list1.textContent=`${ hourArray[i]} : ${paris.rarray[i]} cookies`;
     }
+    var total= document.createElement('p'); // this is for total
+    article1.appendChild(total);
+    var tot=0;
+    for(var i =0;i<hourArray.length;i++){tot+=paris.rarray[i]}
+    total.textContent=` The total slaes in this city is :${tot}`;
 }
 
 function createUnlested5 (){
@@ -213,4 +253,9 @@ var list1=document.createElement('li');
 unlisted.appendChild(list1);
 list1.textContent=`${ hourArray[i]} : ${lima.rarray[i]} cookies`;
     }
+    var total= document.createElement('p'); // this is for total
+    article1.appendChild(total);
+    var tot=0;
+    for(var i =0;i<hourArray.length;i++){tot+=lima.rarray[i]}
+    total.textContent=` The total slaes in this city is :${tot}`;
 }
