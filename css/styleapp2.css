@@ -32,3 +32,6 @@ table tr td:last-child{
 /* tr,td{
     border: blue;
 } */
+.last100{
+    background-color:gray;
+}

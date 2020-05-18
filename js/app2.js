@@ -110,6 +110,9 @@ function createTable() {
                     newentry.textContent = hourArray[j];
 
                 }
+                var newentry = document.createElement('td');
+                tableRow2.appendChild(newentry);
+                newentry.textContent = 'Daily Location Total';
                 // var tableRow2 = document.createElement('tr');
                 // table1.appendChild(tableRow2);
                 break;
@@ -145,10 +148,16 @@ function createTable() {
                 for (var k = 0; k < hourArray.length; k++) {
                     var tot = 0;
                     var newentry4 = document.createElement('td');
-                tableRow3.appendChild(newentry4);
+                tableRow3.appendChild(newentry4);// these for the last cell in the tale which is null
                     for(var h=0;h<allStates.length;h++){ 
                     tot += allStates[h].randomMulRanByCus[k] 
                     newentry4.textContent = tot;}}
+                    var newentry5 = document.createElement('td');
+                    tableRow3.appendChild(newentry5);
+                    var att=document.createAttribute('class');
+                    att.value="last100";
+                    newentry5.setAttributeNodeNS(att);
+                    newentry5.textContent=null;
                 // newentry4.textContent = tot;
         }
     }
