@@ -18,6 +18,8 @@ table{
     width: 100%;
     /* border-width: ; */
     text-align: center;
+    /* height: 200px;
+    overflow: scroll; */
 }
 tr{
     border-bottom: blueviolet;
