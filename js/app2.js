@@ -12,7 +12,7 @@
 // Lima	    2	16	4.6
 var hourArray = ['06:00 am', '07:00 am', '08:00 am', '09:00 am', '10:00 am', '11:00 am', '12:00 pm', '01:00 pm', '02:00 pm', '03:00 pm', '04:00 pm', '05:00 pm', '06:00 pm', '07:00 pm'];
 var allStates = [];// array for all objwects
-
+var i = 0;
 
 function States(name, minCust, maxCust, avgCookieSale) {
     this.name = name;
@@ -33,26 +33,52 @@ States.prototype.rCustomers = function () {
 
 
 
-var seattle = new States('Seattle', 23, 65, 6.3);
+// var seattle = new States('Seattle', 23, 65, 6.3); // These for lab 8
 
-seattle.rCustomers();
-var tokyo = new States('Tokyo', 3, 24, 1.2);
-tokyo.rCustomers();
-var dubai = new States('Dubai', 11, 38, 3.7);
-dubai.rCustomers();
-var paris = new States('Paris', 20, 38, 2.3);
-paris.rCustomers();
-var lima = new States('Lima', 2, 16, 4.6);
-lima.rCustomers();
+// seattle.rCustomers();
+// var tokyo = new States('Tokyo', 3, 24, 1.2);
+// tokyo.rCustomers();
+// var dubai = new States('Dubai', 11, 38, 3.7);
+// dubai.rCustomers();
+// var paris = new States('Paris', 20, 38, 2.3);
+// paris.rCustomers();
+// var lima = new States('Lima', 2, 16, 4.6);
+// lima.rCustomers();
 // console.log(seattle);
 
+var forms = document.getElementById('formOne');
+forms.addEventListener('submit', function (event) {
+    event.preventDefault();
+    var nameOfShop = event.target.nameOfShop.value;
+    var minCustomers = event.target.minc.value;
+    var maxCustomers = event.target.maxc.value;
+    var average = event.target.avg.value;
+    console.log(minCustomers, maxCustomers, average);
+    var shops = new States(nameOfShop, minCustomers, maxCustomers, average);
+
+    shops.rCustomers();
+    console.log(allStates);
+    createTable(i);
+    // console.log(location);
+    // console.log(allStates);
+    // // allStates[1].name.rCustomers();
+    // for(var i=0;i<=allStates.length;i++){
+    //     allStates[i].rCustomers();
+}
+
+)
+// for(var i=0;i<=allStates.length;i++){
+//     allStates[i].rCustomers();
+// }
+// allStates[1].rCustomers();
 
 var container2 = document.getElementById('divone');// to hang the conrainer in the divone ID
 var table1 = document.createElement('table');
+table1.setAttribute('id', 'thisIsMyTable');
 // var tableRow=document.createElement('tr');
 // var tableData=document.createElement('td');
 container2.appendChild(table1);
-createTable();
+// createTable();
 
 
 
@@ -95,70 +121,163 @@ function calculation(a, b) { // mul random customers by average cookies
 
 // }
 // }
-function createTable() {
-    for (var i = 0; i < 7; i++) {
-        switch (i) {// I used 'switch' just to make space in the beginning of the table
-            case 0:
-                var tableRow2 = document.createElement('tr');
-                table1.appendChild(tableRow2);
+// function createTable(i) {
+//     console.log(i);
+//     // table1.textContent=null;
+//     for (var i; i < allStates.length + 1; i++) {
+//         switch (i) {// I used 'switch' just to make space in the beginning of the table
+//             case 0:
+//                 var tableRow = document.createElement('tr');
+//                 table1.appendChild(tableRow);
+//                 var newentry = document.createElement('td');
+//                 tableRow.appendChild(newentry);
+
+//                 newentry.textContent = null;
+//                 for (var j = 0; j < hourArray.length; j++) {
+//                     var newentry = document.createElement('td');
+//                     tableRow.appendChild(newentry);
+//                     newentry.textContent = hourArray[j];
+
+//                 }
+//                 var newentry = document.createElement('td');
+//                 tableRow.appendChild(newentry);
+//                 newentry.textContent = 'Daily Location Total';
+//                 // var tableRow2 = document.createElement('tr');
+//                 // table1.appendChild(tableRow2);
+
+//                 break;
+//             case 1:
+//             case 2:
+//             case 3:
+//             case 4:
+//             case 5:
+//                 console.log(i);
+//                 var tableRow = document.createElement('tr');
+//                 table1.appendChild(tableRow);
+//                 var newentry = document.createElement('td');
+//                 tableRow.appendChild(newentry);
+//                 newentry.textContent = allStates[i - 1].name;
+//                 // console.log(allStates[i - 1].name);
+//                 for (var j = 0; j < hourArray.length; j++) {
+//                     var newentry = document.createElement('td');
+//                     tableRow.appendChild(newentry);
+//                     // console.log(allStates[0]);
+//                     newentry.textContent = allStates[i - 1].randomMulRanByCus[j];
+
+//                 }
+//                 var newentry = document.createElement('td');
+//                 tableRow.appendChild(newentry);
+//                 var tot = 0;
+//                 for (var k = 0; k < hourArray.length; k++) { tot += allStates[i - 1].randomMulRanByCus[k] }
+//                 newentry.textContent = tot;
+//                 // if (i==allStates.length){i++;}
+//                 // console.log(i);
+//                 break;
+//             default:
+//                 var tableRow = document.createElement('tr');
+//                 table1.appendChild(tableRow);
+//                 var newentry4 = document.createElement('td');
+//                 tableRow.appendChild(newentry);
+//                 newentry.textContent = 'The Vertical Summation';
+//                 var tot = 0;
+//                 for (var k = 0; k < hourArray.length; k++) {
+//                     var tot = 0;
+//                     var newentry = document.createElement('td');
+//                     tableRow.appendChild(newentry);// these for the last cell in the table which is null
+//                     for (var h = 0; h < allStates.length; h++) {
+//                         tot += allStates[h].randomMulRanByCus[k]
+//                         newentry.textContent = tot;
+//                     }
+//                 }
+//                 var newentry = document.createElement('td');
+//                 tableRow.appendChild(newentry);
+//                 var att = document.createAttribute('class');
+//                 att.value = "last100";
+//                 newentry.setAttributeNodeNS(att);
+//                 newentry.textContent = null;
+
+//             // newentry4.textContent = tot;
+//         }
+//     } console.log(tableRow);
+//     console.log(i);
+//     return i;
+// }
+// // table1=null;
+// var Parent = document.getElementById('thisIsMyTable');
+// while(Parent.hasChildNodes())
+// {
+//    Parent.removeChild(Parent.firstChild);
+// }
+
+function createTable(i) {
+   
+    
+                var tableRow = document.createElement('tr');// beginning of the table
+                table1.appendChild(tableRow);
                 var newentry = document.createElement('td');
-                tableRow2.appendChild(newentry);
-                newentry.textContent = null;
+                tableRow.appendChild(newentry);
+
+                newentry.textContent = null;// First cell in the table
                 for (var j = 0; j < hourArray.length; j++) {
                     var newentry = document.createElement('td');
-                    tableRow2.appendChild(newentry);
+                    tableRow.appendChild(newentry);
                     newentry.textContent = hourArray[j];
 
                 }
                 var newentry = document.createElement('td');
-                tableRow2.appendChild(newentry);
-                newentry.textContent = 'Daily Location Total';
-                // var tableRow2 = document.createElement('tr');
-                // table1.appendChild(tableRow2);
-                break;
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-                var tableRow3 = document.createElement('tr');
-                table1.appendChild(tableRow3);
-                var newentry1 = document.createElement('td');
-                tableRow3.appendChild(newentry1);
-                newentry1.textContent = allStates[i - 1].name;
-                for (var j = 0; j < hourArray.length; j++) {
-                    var newentry4 = document.createElement('td');
-                    tableRow3.appendChild(newentry4);
-                    newentry4.textContent = allStates[i - 1].randomMulRanByCus[j];
+                tableRow.appendChild(newentry);
+                newentry.textContent = 'Daily Location Total';// End of the first Row
+               
+                
+                
+                var tableRow = document.createElement('tr');// beginning of the Row 2 3 4 ..
+                table1.appendChild(tableRow);
+                var newentry = document.createElement('td');
+                tableRow.appendChild(newentry);
+                newentry.textContent = allStates[i ].name; // Name of the shop
+                // console.log(allStates[i - 1].name);
+                for (var j = 0; j < hourArray.length; j++) {// To Enter the entries of the shop name's row
+                    var newentry = document.createElement('td');
+                    tableRow.appendChild(newentry);
+                    // console.log(allStates[0]);
+                    newentry.textContent = allStates[i].randomMulRanByCus[j];
+                    
 
-                }
-                var newentry4 = document.createElement('td');
-                tableRow3.appendChild(newentry4);
+                }i++;console.log(i);
+                var newentry = document.createElement('td');
+                tableRow.appendChild(newentry);
                 var tot = 0;
                 for (var k = 0; k < hourArray.length; k++) { tot += allStates[i - 1].randomMulRanByCus[k] }
-                newentry4.textContent = tot;
-                break;
-                default:
-                    var tableRow3 = document.createElement('tr');
-                table1.appendChild(tableRow3);
-                    var newentry4 = document.createElement('td');
-                tableRow3.appendChild(newentry4);
-                newentry4.textContent='The Vertical Summation';
+                newentry.textContent = tot;
+                // if (i==allStates.length){i++;}
+                // console.log(i);
+                
+            
+                var tableRow = document.createElement('tr');
+                table1.appendChild(tableRow);
+                var newentry4 = document.createElement('td');
+                tableRow.appendChild(newentry);
+                newentry.textContent = 'The Vertical Summation';
                 var tot = 0;
                 for (var k = 0; k < hourArray.length; k++) {
                     var tot = 0;
-                    var newentry4 = document.createElement('td');
-                tableRow3.appendChild(newentry4);// these for the last cell in the tale which is null
-                    for(var h=0;h<allStates.length;h++){ 
-                    tot += allStates[h].randomMulRanByCus[k] 
-                    newentry4.textContent = tot;}}
-                    var newentry5 = document.createElement('td');
-                    tableRow3.appendChild(newentry5);
-                    var att=document.createAttribute('class');
-                    att.value="last100";
-                    newentry5.setAttributeNodeNS(att);
-                    newentry5.textContent=null;
-                // newentry4.textContent = tot;
+                    var newentry = document.createElement('td');
+                    tableRow.appendChild(newentry);// these for the last cell in the table which is null
+                    for (var h = 0; h < allStates.length; h++) {
+                        tot += allStates[h].randomMulRanByCus[k]
+                        newentry.textContent = tot;
+                    }
+                }
+                var newentry = document.createElement('td');
+                tableRow.appendChild(newentry);
+                var att = document.createAttribute('class');
+                att.value = "last100";
+                newentry.setAttributeNodeNS(att);
+                newentry.textContent = null;
+
+            // newentry4.textContent = tot;
+            
+            console.log(i);
+            return i;
         }
-    }
-}
+     
