@@ -57,20 +57,18 @@ forms.addEventListener('submit', function (event) {
     var shops = new States(nameOfShop, minCustomers, maxCustomers, average);
 
     shops.rCustomers();
-    console.log(allStates);
+    if(allStates[i].name==''||allStates[i].minCust==''||allStates[i].maxCust==''||allStates[i].avgCookieSale==''){// To ensure all values have been entered
+        alert(`Please Enter All Values`);
+        // console.log(allStates[i].name,allStates[i].minCust,allStates[i].maxCust,allStates[i].avgCookieSale);
+    }else{
     createTable(i);
-    // console.log(location);
-    // console.log(allStates);
-    // // allStates[1].name.rCustomers();
-    // for(var i=0;i<=allStates.length;i++){
-    //     allStates[i].rCustomers();
+    i++;}
+    
+    
 }
 
 )
-// for(var i=0;i<=allStates.length;i++){
-//     allStates[i].rCustomers();
-// }
-// allStates[1].rCustomers();
+
 
 var container2 = document.getElementById('divone');// to hang the conrainer in the divone ID
 var table1 = document.createElement('table');
@@ -107,10 +105,101 @@ function calculation(a, b) { // mul random customers by average cookies
     for (var i = 0; i < hourArray.length; i++) {
         newArray2[i] = Math.round(b) * a[i];
         newArray.push(newArray2[i]);
-        // console.log(newArray);
+        
     }
     return newArray;
 }
+
+
+function createTable(i) { //This function will be called from the Form
+  
+if(i!=0){// To erase the final row then update it again in its instructions next
+var finalTableRow = document.getElementById('finalr');
+table1.removeChild(finalTableRow);
+}
+if(i==0){
+    var tableRow = document.createElement('tr');// beginning of the table
+    table1.appendChild(tableRow);
+    var newentry = document.createElement('td');
+    tableRow.appendChild(newentry);
+
+    newentry.textContent = null;// First cell in the table
+    for (var j = 0; j < hourArray.length; j++) {
+        var newentry = document.createElement('td');
+        tableRow.appendChild(newentry);
+        newentry.textContent = hourArray[j];
+
+    }
+    var newentry = document.createElement('td');
+    tableRow.appendChild(newentry);
+    newentry.textContent = 'Daily Location Total';// End of the first Row
+}
+    var tot = 0;
+
+    var tableRow = document.createElement('tr');// beginning of the Row 2 3 4 ..
+    table1.appendChild(tableRow);
+    var newentry = document.createElement('td');
+    tableRow.appendChild(newentry);
+    newentry.textContent = allStates[i].name; // Name of the shop
+  
+    for (var j = 0; j < hourArray.length; j++) {// To Enter the entries of the shop name's row
+        var newentry = document.createElement('td');
+        tableRow.appendChild(newentry);
+               newentry.textContent = allStates[i].randomMulRanByCus[j];
+        tot += allStates[i].randomMulRanByCus[j]; // horizantal total
+
+    } 
+   
+ 
+    var newentry = document.createElement('td');//submit total
+    tableRow.appendChild(newentry);
+    newentry.textContent = tot;
+    
+    
+    
+    
+    
+
+    
+
+    var finalTableRow = document.createElement('tr');// this is the final row in the table
+    finalTableRow.setAttribute('id', 'finalr');
+    // console.log(finalTableRow);
+    table1.appendChild(finalTableRow);
+    var newentry = document.createElement('td');
+    finalTableRow.appendChild(newentry);
+    newentry.textContent = 'The Vertical Summation';
+    var tot = 0;
+    for (var k = 0; k < hourArray.length; k++) {
+        var tot = 0;
+        var newentry = document.createElement('td');
+        finalTableRow.appendChild(newentry);// these for the last cell in the table which is null
+        for (var h = 0; h < allStates.length; h++) {
+            tot += allStates[h].randomMulRanByCus[k]
+            newentry.textContent = tot;
+        }
+    }
+    var newentry = document.createElement('td');
+    finalTableRow.appendChild(newentry);
+    var att = document.createAttribute('class');
+    att.value = "last100";
+    newentry.setAttributeNodeNS(att);
+    newentry.textContent = null;
+
+    
+document.getElementById("formOne").reset();// To reset the inputs for the form after submit
+    
+    // return i;
+
+}
+
+
+
+
+
+//
+//
+// These things for the previous lab i think for lab 8
 // function createTable(){
 //     var tableRow=document.createElement('tr');
 //     table1.appendChild(tableRow);
@@ -208,76 +297,3 @@ function calculation(a, b) { // mul random customers by average cookies
 // {
 //    Parent.removeChild(Parent.firstChild);
 // }
-
-function createTable(i) {
-   
-    
-                var tableRow = document.createElement('tr');// beginning of the table
-                table1.appendChild(tableRow);
-                var newentry = document.createElement('td');
-                tableRow.appendChild(newentry);
-
-                newentry.textContent = null;// First cell in the table
-                for (var j = 0; j < hourArray.length; j++) {
-                    var newentry = document.createElement('td');
-                    tableRow.appendChild(newentry);
-                    newentry.textContent = hourArray[j];
-
-                }
-                var newentry = document.createElement('td');
-                tableRow.appendChild(newentry);
-                newentry.textContent = 'Daily Location Total';// End of the first Row
-               
-                
-                
-                var tableRow = document.createElement('tr');// beginning of the Row 2 3 4 ..
-                table1.appendChild(tableRow);
-                var newentry = document.createElement('td');
-                tableRow.appendChild(newentry);
-                newentry.textContent = allStates[i ].name; // Name of the shop
-                // console.log(allStates[i - 1].name);
-                for (var j = 0; j < hourArray.length; j++) {// To Enter the entries of the shop name's row
-                    var newentry = document.createElement('td');
-                    tableRow.appendChild(newentry);
-                    // console.log(allStates[0]);
-                    newentry.textContent = allStates[i].randomMulRanByCus[j];
-                    
-
-                }i++;console.log(i);
-                var newentry = document.createElement('td');
-                tableRow.appendChild(newentry);
-                var tot = 0;
-                for (var k = 0; k < hourArray.length; k++) { tot += allStates[i - 1].randomMulRanByCus[k] }
-                newentry.textContent = tot;
-                // if (i==allStates.length){i++;}
-                // console.log(i);
-                
-            
-                var tableRow = document.createElement('tr');
-                table1.appendChild(tableRow);
-                var newentry4 = document.createElement('td');
-                tableRow.appendChild(newentry);
-                newentry.textContent = 'The Vertical Summation';
-                var tot = 0;
-                for (var k = 0; k < hourArray.length; k++) {
-                    var tot = 0;
-                    var newentry = document.createElement('td');
-                    tableRow.appendChild(newentry);// these for the last cell in the table which is null
-                    for (var h = 0; h < allStates.length; h++) {
-                        tot += allStates[h].randomMulRanByCus[k]
-                        newentry.textContent = tot;
-                    }
-                }
-                var newentry = document.createElement('td');
-                tableRow.appendChild(newentry);
-                var att = document.createAttribute('class');
-                att.value = "last100";
-                newentry.setAttributeNodeNS(att);
-                newentry.textContent = null;
-
-            // newentry4.textContent = tot;
-            
-            console.log(i);
-            return i;
-        }
-     
