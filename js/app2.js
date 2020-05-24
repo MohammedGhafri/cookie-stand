@@ -44,7 +44,7 @@ var paris = new States('Paris', 20, 38, 2.3);
 paris.rCustomers();
 var lima = new States('Lima', 2, 16, 4.6);
 lima.rCustomers();
-console.log(allStates);
+// console.log(allStates);
 
 
 var forms = document.getElementById('formOne');
@@ -116,12 +116,16 @@ function calculation(a, b) { // mul random customers by average cookies
 
 
 function createTable(i) { //This function will be called from the Form and the fixed table( for data that already exists )
+    // console.log(f);
+    // console.log( allStates[i].name);
     for (var edit = 0; edit < allStates.length; edit++) {
-        if (nameOfShop.value == allStates[edit].name) {
+        if (nameOfShop.value == allStates[edit].name && f>=5) {
+            // console.log(nameOfShop.value == allStates[edit].name);
+            
             allStates[edit].minCust =parseInt(minc.value) ;
             allStates[edit].maxCust = parseInt(maxc.value);
             allStates[edit].avgCookieSale =parseFloat( avg.value);
-            console.log(allStates[edit].minCust);
+            // console.log(allStates[edit].minCust);
             // console.log(edit);
             switch (nameOfShop.value) {
                 case 'Seattle': seattle.rCustomers();break;
@@ -133,33 +137,43 @@ function createTable(i) { //This function will be called from the Form and the f
             }
             
             var totNew = document.getElementById(`final${edit}`);
-            console.log(totNew);
+            // console.log(totNew);
+            var tot=0;
+            console.log(tot);
             // console.log(some);
-            console.log(nameOfShop.value);
+            // console.log(nameOfShop.value);
             for (var r = 0; r < hourArray.length; r++) {
                 var el = document.getElementById(`${edit}` + r);
-                // totNew += allStates[edit].randomMulRanByCus[r];
+                // console.log(allStates[edit].randomMulRanByCus[r]);
+                tot += allStates[edit].randomMulRanByCus[r];
+                // console.log(tot);
+                // console.log(tot);
+                if(nameOfShop.value==allStates[edit]){
+                    console.log(nameOfShop.value==allStates[edit]);
                 el.textContent = allStates[edit].randomMulRanByCus[r];
+            }
                 // console.log(el);
                 // console.log(totNew);
             }
             // console.log(r);
-            // totNew.textContent=totNew;
+            if(nameOfShop.value==allStates[edit]){
+            }
+            totNew.textContent=tot;
             var finalTableRow = document.getElementById('finalr');
-            table1.removeChild(finalTableRow);
+            // table1.removeChild(finalTableRow);
 
             break;
         }
 
     }
-    if (nameOfShop.value != allStates[0].name) {
-        if (i != 0 && f < 5) {// To erase the final row then update it again in its instructions next
+    // if (nameOfShop.value != allStates[0].name  ) {
+        if (i != 0 && f <= 5) {// To erase the final row then update it again in its instructions next
             var finalTableRow = document.getElementById('finalr');
             table1.removeChild(finalTableRow);
         }
         if (i == 0 && f < 5) {
 
-            console.log(i);
+            // console.log(i);
             var tableRow = document.createElement('tr');// beginning of the table
             table1.appendChild(tableRow);
             var newentry = document.createElement('td');
@@ -205,11 +219,11 @@ function createTable(i) { //This function will be called from the Form and the f
 
         if (f >= 5) {// To erase the final row then update it again in its instructions next
             var finalTableRow = document.getElementById('finalr');
-            table1.removeChild(finalTableRow);
+            // table1.removeChild(finalTableRow);
         }
 
 
-    }
+    // }
 
     var finalTableRow = document.createElement('tr');// this is the final row in the table
     finalTableRow.setAttribute('id', 'finalr');
