@@ -33,38 +33,41 @@ States.prototype.rCustomers = function () {
 
 
 
-// var seattle = new States('Seattle', 23, 65, 6.3); // These for lab 8
+var seattle = new States('Seattle', 23, 65, 6.3); // These for lab 8
 
-// seattle.rCustomers();
-// var tokyo = new States('Tokyo', 3, 24, 1.2);
-// tokyo.rCustomers();
-// var dubai = new States('Dubai', 11, 38, 3.7);
-// dubai.rCustomers();
-// var paris = new States('Paris', 20, 38, 2.3);
-// paris.rCustomers();
-// var lima = new States('Lima', 2, 16, 4.6);
-// lima.rCustomers();
-// console.log(seattle);
+seattle.rCustomers();
+var tokyo = new States('Tokyo', 3, 24, 1.2);
+tokyo.rCustomers();
+var dubai = new States('Dubai', 11, 38, 3.7);
+dubai.rCustomers();
+var paris = new States('Paris', 20, 38, 2.3);
+paris.rCustomers();
+var lima = new States('Lima', 2, 16, 4.6);
+lima.rCustomers();
+// console.log(allStates);
+
 
 var forms = document.getElementById('formOne');
 forms.addEventListener('submit', function (event) {
     event.preventDefault();
     var nameOfShop = event.target.nameOfShop.value;
-    var minCustomers = event.target.minc.value;
-    var maxCustomers = event.target.maxc.value;
-    var average = event.target.avg.value;
-    console.log(minCustomers, maxCustomers, average);
+    var minCustomers = parseInt(event.target.minc.value);
+    var maxCustomers = parseInt(event.target.maxc.value);
+    var average =parseFloat( event.target.avg.value);
+    // console.log(minCustomers, maxCustomers, average);
+    // console.log(minCustomers);
     var shops = new States(nameOfShop, minCustomers, maxCustomers, average);
 
     shops.rCustomers();
-    if(allStates[i].name==''||allStates[i].minCust==''||allStates[i].maxCust==''||allStates[i].avgCookieSale==''){// To ensure all values have been entered
+    if (allStates[i].name == '' || allStates[i].minCust == '' || allStates[i].maxCust == '' || allStates[i].avgCookieSale == '') {// To ensure all values have been entered
         alert(`Please Enter All Values`);
         // console.log(allStates[i].name,allStates[i].minCust,allStates[i].maxCust,allStates[i].avgCookieSale);
-    }else{
-    createTable(i);
-    i++;}
-    
-    
+    } else {
+        createTable(i);
+        i++;
+    }
+
+
 }
 
 )
@@ -78,11 +81,12 @@ table1.setAttribute('id', 'thisIsMyTable');
 container2.appendChild(table1);
 // createTable();
 
+var f;
 
-
-
-
-
+for (f = 0; f < allStates.length; f++) {
+    createTable(f);
+    i++;// to progress to the index of array when new entries occurred
+}
 
 
 
@@ -105,62 +109,121 @@ function calculation(a, b) { // mul random customers by average cookies
     for (var i = 0; i < hourArray.length; i++) {
         newArray2[i] = Math.round(b) * a[i];
         newArray.push(newArray2[i]);
-        
+
     }
     return newArray;
 }
 
 
-function createTable(i) { //This function will be called from the Form
-  
-if(i!=0){// To erase the final row then update it again in its instructions next
-var finalTableRow = document.getElementById('finalr');
-table1.removeChild(finalTableRow);
-}
-if(i==0){
-    var tableRow = document.createElement('tr');// beginning of the table
-    table1.appendChild(tableRow);
-    var newentry = document.createElement('td');
-    tableRow.appendChild(newentry);
+function createTable(i) { //This function will be called from the Form and the fixed table( for data that already exists )
+    // console.log(f);
+    // console.log( allStates[i].name);
+    for (var edit = 0; edit < allStates.length; edit++) {
+        if (nameOfShop.value == allStates[edit].name && f>=5) {
+            // console.log(nameOfShop.value == allStates[edit].name);
+            
+            allStates[edit].minCust =parseInt(minc.value) ;
+            allStates[edit].maxCust = parseInt(maxc.value);
+            allStates[edit].avgCookieSale =parseFloat( avg.value);
+            // console.log(allStates[edit].minCust);
+            // console.log(edit);
+            switch (nameOfShop.value) {
+                case 'Seattle': seattle.rCustomers();break;
+                case 'Tokyo': tokyo.rCustomers();break;
+                case 'Dubai':dubai.rCustomers();break;
+                    case 'Paris':paris.rCustomers();break;
+                        case 'Lima':lima.rCustomers();break;
+                
+            }
+            
+            var totNew = document.getElementById(`final${edit}`);
+            // console.log(totNew);
+            var tot=0;
+            console.log(tot);
+            // console.log(some);
+            // console.log(nameOfShop.value);
+            for (var r = 0; r < hourArray.length; r++) {
+                var el = document.getElementById(`${edit}` + r);
+                // console.log(allStates[edit].randomMulRanByCus[r]);
+                tot += allStates[edit].randomMulRanByCus[r];
+                // console.log(tot);
+                // console.log(tot);
+                if(nameOfShop.value==allStates[edit]){
+                    console.log(nameOfShop.value==allStates[edit]);
+                el.textContent = allStates[edit].randomMulRanByCus[r];
+            }
+                // console.log(el);
+                // console.log(totNew);
+            }
+            // console.log(r);
+            if(nameOfShop.value==allStates[edit]){
+            }
+            totNew.textContent=tot;
+            var finalTableRow = document.getElementById('finalr');
+            // table1.removeChild(finalTableRow);
 
-    newentry.textContent = null;// First cell in the table
-    for (var j = 0; j < hourArray.length; j++) {
-        var newentry = document.createElement('td');
-        tableRow.appendChild(newentry);
-        newentry.textContent = hourArray[j];
+            break;
+        }
 
     }
-    var newentry = document.createElement('td');
-    tableRow.appendChild(newentry);
-    newentry.textContent = 'Daily Location Total';// End of the first Row
-}
-    var tot = 0;
+    // if (nameOfShop.value != allStates[0].name  ) {
+        if (i != 0 && f <= 5) {// To erase the final row then update it again in its instructions next
+            var finalTableRow = document.getElementById('finalr');
+            table1.removeChild(finalTableRow);
+        }
+        if (i == 0 && f < 5) {
 
-    var tableRow = document.createElement('tr');// beginning of the Row 2 3 4 ..
-    table1.appendChild(tableRow);
-    var newentry = document.createElement('td');
-    tableRow.appendChild(newentry);
-    newentry.textContent = allStates[i].name; // Name of the shop
-  
-    for (var j = 0; j < hourArray.length; j++) {// To Enter the entries of the shop name's row
+            // console.log(i);
+            var tableRow = document.createElement('tr');// beginning of the table
+            table1.appendChild(tableRow);
+            var newentry = document.createElement('td');
+            tableRow.appendChild(newentry);
+
+            newentry.textContent = null;// First cell in the table
+            for (var j = 0; j < hourArray.length; j++) {
+                var newentry = document.createElement('td');
+                tableRow.appendChild(newentry);
+                newentry.textContent = hourArray[j];
+
+            }
+            var newentry = document.createElement('td');
+            tableRow.appendChild(newentry);
+            newentry.textContent = 'Daily Location Total';// End of the first Row
+        }
+        var tot = 0;
+
+        // console.log(allStates[i].name==allStates[i].nameOfShop);
+        var tableRow = document.createElement('tr');// beginning of the Row 2 3 4 ..
+        table1.appendChild(tableRow);
         var newentry = document.createElement('td');
         tableRow.appendChild(newentry);
-               newentry.textContent = allStates[i].randomMulRanByCus[j];
-        tot += allStates[i].randomMulRanByCus[j]; // horizantal total
+        newentry.setAttribute('id', i);
+        newentry.textContent = allStates[i].name; // Name of the shop
 
-    } 
-   
- 
-    var newentry = document.createElement('td');//submit total
-    tableRow.appendChild(newentry);
-    newentry.textContent = tot;
-    
-    
-    
-    
-    
+        for (var j = 0; j < hourArray.length; j++) {// To Enter the entries of the shop name's row
+            var newentry = document.createElement('td');
+            tableRow.appendChild(newentry);
+            newentry.textContent = allStates[i].randomMulRanByCus[j];
+            newentry.setAttribute('id', `${i}` + j);
+            tot += allStates[i].randomMulRanByCus[j]; // horizantal total
 
-    
+        }
+
+
+        var newentry = document.createElement('td');//submit total
+        newentry.setAttribute('id', `final${i}`);
+        tableRow.appendChild(newentry);
+        newentry.textContent = tot;
+
+
+
+        if (f >= 5) {// To erase the final row then update it again in its instructions next
+            var finalTableRow = document.getElementById('finalr');
+            // table1.removeChild(finalTableRow);
+        }
+
+
+    // }
 
     var finalTableRow = document.createElement('tr');// this is the final row in the table
     finalTableRow.setAttribute('id', 'finalr');
@@ -186,12 +249,24 @@ if(i==0){
     newentry.setAttributeNodeNS(att);
     newentry.textContent = null;
 
-    
-document.getElementById("formOne").reset();// To reset the inputs for the form after submit
-    
+
+    document.getElementById("formOne").reset();// To reset the inputs for the form after submit
+
     // return i;
 
+
 }
+// for (var edit = 0; edit < allStates.length; edit++) {
+//     if (nameOfShop.value == allStates[edit].name) {
+//         allStates[edit].name = 'hello';
+//         console.log(allStates[edit].name);
+//         var el = document.getElementById('010');
+//         console.log(el);
+
+//         break;
+//     }
+
+// }
 
 
 
