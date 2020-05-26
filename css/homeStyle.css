@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Indie+Flower&family=Pacifico&display=swap');
 body{
     background-image: url("https://i.pinimg.com/originals/68/bb/42/68bb421559642364cfb46129d2c46145.jpg");
     background-size: cover;
@@ -11,24 +14,25 @@ header{
 ul{
     list-style: none;
 }
-nav:nth-child(2){
+nav:nth-child(1){
     margin-top: 10%;
 }
-nav:nth-child(2) ul{
-    background-color: #FF6429;
+nav:nth-child(1) ul{
+    background-color: #9AFF6E;
 }
-nav:nth-child(2) ul li{
+nav:nth-child(1) ul li{
     display: inline-block;
     margin:0 10% 0 10%;
     text-decoration: none;
-    background-color: #E8A825;
+    background-color: #FF7530;
     width: 10%;
     text-align: center;
+    border-radius: 7px;
    
 }
 a{
     text-decoration: none;
-    color: red;
+    color: #35FF31;
     font-size: 35px;
     
     
@@ -41,25 +45,36 @@ article{
 }
 article h3{
     font-size: 34px;
-    background-color: yellow;
+    background-color: #9AFF6E;
     width: fit-content;
 margin: auto;
+color: #64C5F5;
+border-radius: 7px;
 }
 article p{
     font-size: 29px;
     color: orange;
     background-color: aqua;
+    font-family: 'Pacifico', cursive;
 }
 .indextable{
     margin: auto;
     color: darkslategrey;
     font-size: 25px;
-    background-color: aqua;
+    background-color: #D6BA78;
+    border-radius: 10px;
+    font-family: 'Indie Flower', cursive;
 }
 th{
     border-bottom: 5px dotted darkslategrey;
 }
-
+td{
+    border-right: 3px solid red;
+    padding: 10px;
+}
+td:last-child{
+    border-right: none;
+}
 
 
 /* .icon{
@@ -71,18 +86,23 @@ img {
 	max-width: 240px;
 	width: 100%;
     height: 100px;
-    float: left;
+    /* float: left; */
         display: block;
         margin:3px;
         border-radius: 20px;
+        padding-right: 50px;
+        display: inline-block;
 
 	
     }
-   
+   img:nth-child(5){
+       position: relative;
+       top: 10%;
+   }
 .galaryNav ul{
     
     text-align: center;
-    background-color: yellow;
+    /* background-color: yellow; */
     margin-bottom: 3%;
     border-radius: 15px;
     
@@ -90,4 +110,17 @@ img {
 .galaryNav li{
    margin-bottom: 3%;
     
+}
+h1{
+    font-family: 'Dancing Script', cursive;
+    font-size: 96px;
+    color: #F0E74C;
+}
+
+/* .icon{
+    display: none;
+} */
+.icon:hover{
+    display: contents;
+    background-color: red;
 }
