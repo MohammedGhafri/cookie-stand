@@ -156,11 +156,11 @@ function createTable(i) { //This function will be called from the Form and the f
                 // console.log(totNew);
             }
             // console.log(r);
-            if(nameOfShop.value==allStates[edit]){
-            }
-            totNew.textContent=tot;
-            var finalTableRow = document.getElementById('finalr');
-            // table1.removeChild(finalTableRow);
+            // if(nameOfShop.value==allStates[edit]){
+            // }
+            // totNew.textContent=tot;
+            // var finalTableRow = document.getElementById('finalr');
+            // // table1.removeChild(finalTableRow);
 
             break;
         }
